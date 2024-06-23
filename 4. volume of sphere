@@ -1,0 +1,13 @@
+import java.util.*;
+class Sphere
+{
+public static void main(String arg[])
+{
+Scanner sc=new Scanner(System.in);
+double r,volume;
+System.out.println("enter the raidus");
+r=sc.nextDouble();
+volume=1.33*3.14*r*r*r;
+System.out.println("volume:"+volume);
+}
+}
