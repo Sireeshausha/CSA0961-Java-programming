@@ -1,0 +1,59 @@
+class Customer {
+    int accountNo;
+     String accName;
+    int balance;
+    Object lock = new Object();
+
+    public Customer(int accountNo, String accName, int balance) {
+        this.accountNo = accountNo;
+        this.accName = accName;
+        this.balance = balance;
+    }
+
+    public synchronized void deposit(int amount) {
+        synchronized (lock) {
+            balance += amount;
+            lock.notify(); 
+        }
+    }
+
+    public synchronized void withdraw(int amount) {
+        synchronized (lock) {
+            while (balance < amount) {
+                try {
+                    lock.wait(); 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            balance -= amount;
+            System.out.println("Withdraw operation success, balance amount " + balance);
+        }
+    }
+}
+
+public class Bankbal {
+    public static void main(String[] args) {
+          Object lock = new Object();
+
+        Customer customer = new Customer(1, "John Doe", 10000);
+
+        
+        Thread withdrawThread = new Thread(() -> {
+            customer.withdraw(12000);
+        });
+
+
+        Thread depositThread = new Thread(() -> {
+            try {
+                Thread.sleep(2000); // simulate delay
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            customer.deposit(3000);
+        });
+
+        withdrawThread.start();
+        depositThread.start();
+    }
+}
