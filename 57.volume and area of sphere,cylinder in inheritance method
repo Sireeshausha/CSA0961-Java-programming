@@ -1,0 +1,51 @@
+class Shape
+{
+    double r;
+
+    Shape() 
+{
+        r = 4;
+    }
+
+    void display() {
+    System.out.println("Radius: " + r);
+    }
+}
+
+class Sphere extends Shape {
+  double area, volume;
+
+    void calculate() {
+        area = 4 * 3.14 * r * r;
+        volume = (4.0 / 3) * 3.14 * r * r * r; 
+        System.out.println("Area of sphere: " + area);
+        System.out.println("Volume of sphere: " + volume);
+    }
+}
+
+class Cone extends Sphere {
+    protected int l, h;
+
+    Cone() {
+        l = 3;
+        h = 6;
+    }
+
+    void calculate() {
+        super.calculate();         area = 3.14 * r * (l + r);
+        volume = (1.0 / 3) * 3.14 * r * r * h; 
+        System.out.println("Area of cone: " + area);
+        System.out.println("Volume of cone: " + volume);
+    }
+}
+
+class Cylinder extends Cone {
+    void calculate() {
+        super.calculate();
+        area = 2 * 3.14 * r * (h + r);
+        volume = 3.14 * r * r * h;
+        System.out.println("Area of cylinder: " + area);
+        System.out.println("Volume of cylinder: " + volume);
+    }
+}
+
