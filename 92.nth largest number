@@ -1,0 +1,20 @@
+import java.util.Arrays;
+
+public class NthLargestNumber {
+    public static int findNthLargest(int[] array, int N) 
+        Arrays.sort(array);
+        int[] reversedArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversedArray[i] = array[array.length - 1 - i];
+        }
+        return reversedArray[N - 1];
+    }
+
+    public static void main(String[] args) {
+        int[] list = {14, 67, 48, 23, 5, 62};
+        int N = 4;
+
+        int result = findNthLargest(list, N);
+        System.out.println(N + "th Largest number: " + result);
+    }
+}
