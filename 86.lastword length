@@ -1,0 +1,14 @@
+public class Lastwordlen {
+    public static void main(String[] args) {
+        String s = "Saveetha School of Engineering";
+
+        int length = lastWordLength(s);
+
+        System.out.println("Length of the last word: " + length);
+    }
+
+    public static int lastWordLength(String s) {
+        String[] words = s.split(" ");
+        return words[words.length - 1].length();
+    }
+}
