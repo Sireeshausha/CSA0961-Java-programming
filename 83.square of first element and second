@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Squarearray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the lower range: ");
+        int lowerRange = sc.nextInt();
+
+        System.out.print("Enter the upper range: ");
+        int upperRange = sc.nextInt();
+
+        int[] numbers = new int[upperRange - lowerRange + 1];
+        int[] squares = new int[numbers.length];
+
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = lowerRange + i;
+            squares[i] = numbers[i] * numbers[i];
+        }
+
+        System.out.print("[( ");
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.print("(" + numbers[i] + ", " + squares[i] + ")");
+            if (i < numbers.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println(")]");
+    }
+}
